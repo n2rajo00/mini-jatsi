@@ -26,23 +26,21 @@ export default Home = ({ navigation }) => {
 
     return(
         <>
-            <Header />
-            <View>
-                <MaterialCommunityIcons name="information" size={90} color="tomato"/>
+            <Header/>
+            <View  style={styles.gameboard}>
+                <MaterialCommunityIcons name="information" size={40} color="#ea23dd"/>
                 {!hasPlayerName ? 
                     <>
                         <Text>Give name for Scoreboard</Text>
-                        <TextInput onChangeText={setPlayerName} autoFocus={true}/>
-                        <Pressable
-                            onPress={() => handlePlayerName(playerName)}
-                        >
+                        <TextInput onChangeText={setPlayerName} autoFocus={true} style={styles.buttonText}/>
+                        <Pressable onPress={() => handlePlayerName(playerName)} style={styles.button}>
                             <Text>Okay</Text>
                         </Pressable>
                     </>
                 :
                 <>
-                    <Text>Rules of the Game</Text>
-                    <Text multiline="true">
+                    <Text style={styles.gameinfo}>Rules of the Game</Text>
+                    <Text multiline="true" style={styles.gameinfo}>
                     THE GAME: Upper section of the classic Yahtzee 
                     dice game. You have {NBR_OF_DICES} dices and 
                     for the every dice you have {NBR_OF_THROWS} 
@@ -62,15 +60,15 @@ export default Home = ({ navigation }) => {
                     getting bonus which gives you {BONUS_POINTS} 
                     points more. 
                     </Text>
-                    <Text>Good luck, {playerName}</Text>
-                    <Pressable
-                        onPress={() => navigation.navigate('Gameboard')}>
+                    <Text style={styles.gameinfo}>Good luck, {playerName}</Text>
+                    <Pressable style={styles.button}
+                        onPress={() => navigation.navigate('Gameboard', {player: playerName})}>
                         <Text>PLAY</Text>
                     </Pressable>
                 </> 
                 }
             </View>
-            <Footer />
+            <Footer/>
         </>
     )
 }
